@@ -34,7 +34,7 @@ useEffect(()=> {
              <Field
             type="text"
             name="email"
-            placeholder="email"
+            placeholder="email.address"
             />
             {touched.email && errors.email && (<span className="error">{errors.email}</span>)}
 
@@ -44,15 +44,18 @@ useEffect(()=> {
             placeholder="password"
             />
             {touched.password && errors.password && (<span className="error">{errors.password}</span>)}
-
+<lablel>
+           <span> I accept </span>
             <Field
             type="checkbox"
             name="tos"
             checked={values.tos}
           />
-            {touched.tos && errors.tos && (<span className="error">{errors.tos}</span>)}
+           {touched.tos && errors.tos && (<span className="error">{errors.tos}</span>)}
+           </lablel>
 
           <button type="submit">Submit</button>
+          
         </Form>
         
         {users.map(user => (
