@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+
+.error {
+  font-size: 10px;
+  line-height: 15px;
+  color: #cc0033;
+  padding: 2px;
+  margin: 20px 0px 0px -130px;
+  position: absolute;
+}
+
+.errors .error {
+  display: inline-block;
+}
+
+.forminput{
+  display: inline-block;
+}
+/* input {
+  display: flex;
+  flex-direction: column;
+} */

@@ -23,34 +23,34 @@ useEffect(()=> {
     return(
         <>
         <h1>Form Component</h1> 
-        
+        <div className="forminput">
         <Form>
             <Field
             type="text"
             name="name"
             placeholder="name"
             />
-            {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
+            {touched.name && errors.name && (<span className="error">{errors.name}</span>)}
              <Field
             type="text"
             name="email"
             placeholder="email"
             />
-            {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
+            {touched.email && errors.email && (<span className="error">{errors.email}</span>)}
 
             <Field
             type="text"
             name="password"
             placeholder="password"
             />
-            {touched.password && errors.password && (<p className="error">{errors.password}</p>)}
+            {touched.password && errors.password && (<span className="error">{errors.password}</span>)}
 
             <Field
             type="checkbox"
             name="tos"
             checked={values.tos}
           />
-            {touched.tos && errors.tos && (<p className="error">{errors.tos}</p>)}
+            {touched.tos && errors.tos && (<span className="error">{errors.tos}</span>)}
 
           <button type="submit">Submit</button>
         </Form>
@@ -58,6 +58,7 @@ useEffect(()=> {
         {users.map(user => (
         <p key={user.id}>{user.name}</p>
         ))}
+        </div>
         </>
     )
 }
