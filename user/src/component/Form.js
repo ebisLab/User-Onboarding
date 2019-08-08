@@ -80,7 +80,7 @@ const FormikForm = withFormik({
     }),
 
     //get setStatus
-    handleSubmit(values, {setStatus}){
+    handleSubmit(values, {setStatus, resetForm}){
         
         console.log(values);
         //form submission HTTP request
@@ -88,6 +88,8 @@ const FormikForm = withFormik({
         axios
         .post(`https://reqres.in/api/users`, values)
         .then(res=> {
+            console.log('Set Status Area')
+            resetForm();
             setStatus(res.data)
         })
         .catch(err => console.log(err) )
