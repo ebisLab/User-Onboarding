@@ -3,22 +3,7 @@ import axios from 'axios';
 import {Form, Field, withFormik, Formik} from 'formik';
 import * as Yup from 'yup';
 
- const FormikForm = withFormik({
-    mapPropsToValues({name}){
-        return{
-            name: name || ''
-        }
-    }, 
 
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required('Hold on hommie!')
-    }),
-
-    handleSubmit(values){
-        console.log(values);
-        //form submission HTTP request
-    }
- })(UserForm)
 
 function UserForm(){
 
@@ -35,8 +20,30 @@ function UserForm(){
             />
         </Form>
         
+        
         </>
     )
 }
 
-export default UserForm;
+const FormikForm = withFormik({
+    // mapPropsToValues({name}){
+    //     return{
+    //         name: name || ''
+    //     }
+    // }, 
+
+    // validationSchema: Yup.object().shape({
+    //     name: Yup.string().required('Hold on hommie!')
+    // }),
+
+    // handleSubmit(values, {setStatus}){
+        
+    //     console.log(values);
+    //     //form submission HTTP request
+
+    //     axios
+    //     .post(`https://reqres.in/api/users`)
+    // }
+ })(UserForm)
+
+export default FormikForm;
