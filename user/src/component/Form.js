@@ -8,14 +8,15 @@ import * as Yup from 'yup';
         return{
             name: name || ''
         }
-    }
+    }, 
 
-    // handleSubmit(values){
-    //     console.log(values);
-    // }
+    handleSubmit(values){
+        console.log(values);
+        //form submission HTTP request
+    }
  })(UserForm)
 
-export default function UserForm(){
+function UserForm(){
 
    
     return(
@@ -33,3 +34,5 @@ export default function UserForm(){
         </>
     )
 }
+
+export default UserForm;
