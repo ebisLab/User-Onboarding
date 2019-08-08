@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 
 function UserForm({errors, touched, values}){
-
+const[users, setUsers] = useState([]);
    
     return(
         <>
@@ -43,7 +43,7 @@ function UserForm({errors, touched, values}){
           <button type="submit">Submit</button>
         </Form>
         
-        
+        {users.map(folk => <p>{folk}</p>)}
         </>
     )
 }
@@ -72,7 +72,7 @@ const FormikForm = withFormik({
 
         axios
         .post(`https://reqres.in/api/users`, values)
-        .then(res=> {setStatus(res.data)})
+        .then(res=> {setStatus({users: res.data})})
         .catch(err => console.log(err) )
     }
  })(UserForm)
