@@ -10,6 +10,10 @@ import * as Yup from 'yup';
         }
     }, 
 
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required('Hold on hommie!')
+    }),
+
     handleSubmit(values){
         console.log(values);
         //form submission HTTP request
