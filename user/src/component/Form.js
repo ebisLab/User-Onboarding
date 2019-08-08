@@ -5,8 +5,20 @@ import * as Yup from 'yup';
 
 
 
-function UserForm({errors, touched, values}){
+function UserForm({errors, touched, values, status}){
+    //getting status from props
 const[users, setUsers] = useState([]);
+console.log('Users', users);
+
+useEffect(()=> {
+    //in the case status comes undentified
+    if(status){
+        setUsers([...users, status]);
+    }
+    }, [status]);
+
+// get status from props
+
    
     return(
         <>
@@ -43,7 +55,9 @@ const[users, setUsers] = useState([]);
           <button type="submit">Submit</button>
         </Form>
         
-        {users.map(folk => <p>{folk}</p>)}
+        {users.map(user => (
+        <p>{user.name}</p>
+        ))}
         </>
     )
 }
@@ -65,6 +79,7 @@ const FormikForm = withFormik({
         tos: Yup.string().required('Hold on hommie!'),
     }),
 
+    //get setStatus
     handleSubmit(values, {setStatus}){
         
         console.log(values);
@@ -72,7 +87,9 @@ const FormikForm = withFormik({
 
         axios
         .post(`https://reqres.in/api/users`, values)
-        .then(res=> {setStatus({users: res.data})})
+        .then(res=> {
+            setStatus(res.data)
+        })
         .catch(err => console.log(err) )
     }
  })(UserForm)
