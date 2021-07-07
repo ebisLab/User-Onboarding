@@ -5,45 +5,63 @@ import * as Yup from 'yup';
 
 
 
-function UserForm({errors, touched, values}){
+function UserForm({errors, touched, values, status}){
+    //getting status from props
 const[users, setUsers] = useState([]);
+console.log('Users', users);
+
+useEffect(()=> {
+    //in the case status comes undentified
+    if(status){
+        setUsers([...users, status]);
+    }
+    }, [status]);
+
+// get status from props
+
    
     return(
         <>
         <h1>Form Component</h1> 
-        
+        <div className="forminput">
         <Form>
             <Field
             type="text"
             name="name"
             placeholder="name"
             />
-            {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
+            {touched.name && errors.name && (<span className="error">{errors.name}</span>)}
              <Field
             type="text"
             name="email"
-            placeholder="email"
+            placeholder="email.address"
             />
-            {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
+            {touched.email && errors.email && (<span className="error">{errors.email}</span>)}
 
             <Field
             type="text"
             name="password"
             placeholder="password"
             />
-            {touched.password && errors.password && (<p className="error">{errors.password}</p>)}
-
+            {touched.password && errors.password && (<span className="error">{errors.password}</span>)}
+<lablel>
+           <span> I accept </span>
             <Field
             type="checkbox"
             name="tos"
             checked={values.tos}
           />
-            {touched.tos && errors.tos && (<p className="error">{errors.tos}</p>)}
+           {touched.tos && errors.tos && (<span className="error">{errors.tos}</span>)}
+           </lablel>
 
           <button type="submit">Submit</button>
+          
         </Form>
         
-        {users.map(folk => <p>{folk}</p>)}
+        {users.map(user => (
+        <p key={user.id}>{user.name}</p>
+        ))}
+        </div>
         </>
     )
 }
@@ -65,14 +83,19 @@ const FormikForm = withFormik({
         tos: Yup.string().required('Hold on hommie!'),
     }),
 
-    handleSubmit(values, {setStatus}){
+    //get setStatus
+    handleSubmit(values, {setStatus, resetForm}){
         
         console.log(values);
         //form submission HTTP request
 
         axios
         .post(`https://reqres.in/api/users`, values)
-        .then(res=> {setStatus({users: res.data})})
+        .then(res=> {
+            console.log('Set Status Area')
+            resetForm();
+            setStatus(res.data)
+        })
         .catch(err => console.log(err) )
     }
  })(UserForm)
